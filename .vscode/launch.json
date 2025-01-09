@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-AbelScApp<abel-sc>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "app.abelsc.com.AbelScApp",
+      "projectName": "abel-sc",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "internalConsole"
+    }
+  ]
+}
