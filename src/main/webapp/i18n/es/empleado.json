@@ -1,0 +1,28 @@
+{
+  "abelScApp": {
+    "empleado": {
+      "home": {
+        "title": "Empleados",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Empleado",
+        "createOrEditLabel": "Crear o editar Empleado",
+        "notFound": "Ningún Empleados encontrado"
+      },
+      "created": "Un nuevo Empleado ha sido creado con el identificador {{ param }}",
+      "updated": "Un Empleado ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Empleado ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Empleado {{ id }}?"
+      },
+      "detail": {
+        "title": "Empleado"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "dni": "Dni",
+      "salario": "Salario",
+      "fechaContratacion": "Fecha Contratacion",
+      "empresa": "Empresa"
+    }
+  }
+}

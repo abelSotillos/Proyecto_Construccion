@@ -1,0 +1,20 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221334"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [],
+  "name": "PerfilUsuario",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

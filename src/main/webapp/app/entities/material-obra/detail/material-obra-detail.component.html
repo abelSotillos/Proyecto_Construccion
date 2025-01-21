@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (materialObra(); as materialObraRef) {
+      <div>
+        <h2 data-cy="materialObraDetailsHeading"><span jhiTranslate="abelScApp.materialObra.detail.title">Material Obra</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ materialObraRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.materialObra.cantidad">Cantidad</span></dt>
+          <dd>
+            <span>{{ materialObraRef.cantidad }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.materialObra.obra">Obra</span></dt>
+          <dd>
+            @if (materialObra()!.obra) {
+              <div>
+                <a [routerLink]="['/obra', materialObra()!.obra?.id, 'view']">{{ materialObraRef.obra?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="abelScApp.materialObra.material">Material</span></dt>
+          <dd>
+            @if (materialObra()!.material) {
+              <div>
+                <a [routerLink]="['/material', materialObra()!.material?.id, 'view']">{{ materialObraRef.material?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/material-obra', materialObraRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

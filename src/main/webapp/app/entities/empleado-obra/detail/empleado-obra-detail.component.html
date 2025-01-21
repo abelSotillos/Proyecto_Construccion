@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (empleadoObra(); as empleadoObraRef) {
+      <div>
+        <h2 data-cy="empleadoObraDetailsHeading"><span jhiTranslate="abelScApp.empleadoObra.detail.title">Empleado Obra</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ empleadoObraRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleadoObra.horas">Horas</span></dt>
+          <dd>
+            <span>{{ empleadoObraRef.horas }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleadoObra.obra">Obra</span></dt>
+          <dd>
+            @if (empleadoObra()!.obra) {
+              <div>
+                <a [routerLink]="['/obra', empleadoObra()!.obra?.id, 'view']">{{ empleadoObraRef.obra?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleadoObra.empleado">Empleado</span></dt>
+          <dd>
+            @if (empleadoObra()!.empleado) {
+              <div>
+                <a [routerLink]="['/empleado', empleadoObra()!.empleado?.id, 'view']">{{ empleadoObraRef.empleado?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/empleado-obra', empleadoObraRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

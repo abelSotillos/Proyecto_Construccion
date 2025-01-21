@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity MaterialObra.
+    -->
+    <changeSet id="20250121221332-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="obra_id"
+                                 baseTableName="material_obra"
+                                 constraintName="fk_material_obra__obra_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="obra"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="material_obra"
+                                 constraintName="fk_material_obra__material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"
+                                 />
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,24 @@
+{
+  "abelScApp": {
+    "perfilUsuario": {
+      "home": {
+        "title": "Perfil Usuarios",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Perfil Usuario",
+        "createOrEditLabel": "Create or edit a Perfil Usuario",
+        "notFound": "No Perfil Usuarios found"
+      },
+      "created": "A new Perfil Usuario is created with identifier {{ param }}",
+      "updated": "A Perfil Usuario is updated with identifier {{ param }}",
+      "deleted": "A Perfil Usuario is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Perfil Usuario {{ id }}?"
+      },
+      "detail": {
+        "title": "Perfil Usuario"
+      },
+      "id": "ID",
+      "empresa": "Empresa"
+    }
+  }
+}

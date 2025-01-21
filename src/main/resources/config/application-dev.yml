@@ -19,7 +19,7 @@ logging:
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
     app.abelsc.com: DEBUG
-    javax.management: DEBUG
+    javax.management: WARN
 
 spring:
   devtools:

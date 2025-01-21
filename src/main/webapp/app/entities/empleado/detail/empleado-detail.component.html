@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (empleado(); as empleadoRef) {
+      <div>
+        <h2 data-cy="empleadoDetailsHeading"><span jhiTranslate="abelScApp.empleado.detail.title">Empleado</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ empleadoRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleado.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ empleadoRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleado.dni">Dni</span></dt>
+          <dd>
+            <span>{{ empleadoRef.dni }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleado.salario">Salario</span></dt>
+          <dd>
+            <span>{{ empleadoRef.salario }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleado.fechaContratacion">Fecha Contratacion</span></dt>
+          <dd>
+            <span>{{ empleadoRef.fechaContratacion | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.empleado.empresa">Empresa</span></dt>
+          <dd>
+            @if (empleado()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', empleado()!.empresa?.id, 'view']">{{ empleadoRef.empresa?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/empleado', empleadoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,26 @@
+{
+  "abelScApp": {
+    "materialObra": {
+      "home": {
+        "title": "Material Obras",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Material Obra",
+        "createOrEditLabel": "Crear o editar Material Obra",
+        "notFound": "Ningún Material Obras encontrado"
+      },
+      "created": "Un nuevo Material Obra ha sido creado con el identificador {{ param }}",
+      "updated": "Un Material Obra ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Material Obra ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Material Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Material Obra"
+      },
+      "id": "ID",
+      "cantidad": "Cantidad",
+      "obra": "Obra",
+      "material": "Material"
+    }
+  }
+}

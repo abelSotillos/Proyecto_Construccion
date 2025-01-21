@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-maquinaria-obra-heading"
+        data-cy="MaquinariaObraCreateUpdateHeading"
+        jhiTranslate="abelScApp.maquinariaObra.home.createOrEditLabel"
+      >
+        Crear o editar Maquinaria Obra
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="abelScApp.maquinariaObra.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_horas" jhiTranslate="abelScApp.maquinariaObra.horas">Horas</label>
+          <input type="number" class="form-control" name="horas" id="field_horas" data-cy="horas" formControlName="horas" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_obra" jhiTranslate="abelScApp.maquinariaObra.obra">Obra</label>
+          <select class="form-control" id="field_obra" data-cy="obra" name="obra" formControlName="obra" [compareWith]="compareObra">
+            <option [ngValue]="null"></option>
+            @for (obraOption of obrasSharedCollection; track $index) {
+              <option [ngValue]="obraOption">{{ obraOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_maquinaria" jhiTranslate="abelScApp.maquinariaObra.maquinaria">Maquinaria</label>
+          <select
+            class="form-control"
+            id="field_maquinaria"
+            data-cy="maquinaria"
+            name="maquinaria"
+            formControlName="maquinaria"
+            [compareWith]="compareMaquinaria"
+          >
+            <option [ngValue]="null"></option>
+            @for (maquinariaOption of maquinariasSharedCollection; track $index) {
+              <option [ngValue]="maquinariaOption">{{ maquinariaOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{
+  "abelScApp": {
+    "obra": {
+      "home": {
+        "title": "Obras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Obra",
+        "createOrEditLabel": "Create or edit a Obra",
+        "notFound": "No Obras found"
+      },
+      "created": "A new Obra is created with identifier {{ param }}",
+      "updated": "A Obra is updated with identifier {{ param }}",
+      "deleted": "A Obra is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Obra"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "direccion": "Direccion",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "coste": "Coste",
+      "estado": "Estado",
+      "costePagado": "Coste Pagado",
+      "empresa": "Empresa",
+      "cliente": "Cliente"
+    }
+  }
+}

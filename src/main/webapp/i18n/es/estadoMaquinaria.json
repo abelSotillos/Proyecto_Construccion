@@ -1,0 +1,10 @@
+{
+  "abelScApp": {
+    "EstadoMaquinaria": {
+      "null": "",
+      "USO": "USO",
+      "PARADA": "PARADA",
+      "TALLER": "TALLER"
+    }
+  }
+}

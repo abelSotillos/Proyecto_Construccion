@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (maquinaria(); as maquinariaRef) {
+      <div>
+        <h2 data-cy="maquinariaDetailsHeading"><span jhiTranslate="abelScApp.maquinaria.detail.title">Maquinaria</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ maquinariaRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.maquinaria.modelo">Modelo</span></dt>
+          <dd>
+            <span>{{ maquinariaRef.modelo }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.maquinaria.estado">Estado</span></dt>
+          <dd>
+            <span [jhiTranslate]="'abelScApp.EstadoMaquinaria.' + (maquinariaRef.estado ?? 'null')">{{
+              { null: '', USO: 'USO', PARADA: 'PARADA', TALLER: 'TALLER' }[maquinariaRef.estado ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.maquinaria.precio">Precio</span></dt>
+          <dd>
+            <span>{{ maquinariaRef.precio }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.maquinaria.empresa">Empresa</span></dt>
+          <dd>
+            @if (maquinaria()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', maquinaria()!.empresa?.id, 'view']">{{ maquinariaRef.empresa?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/maquinaria', maquinariaRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

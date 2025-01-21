@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (material(); as materialRef) {
+      <div>
+        <h2 data-cy="materialDetailsHeading"><span jhiTranslate="abelScApp.material.detail.title">Material</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ materialRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ materialRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.descripcion">Descripcion</span></dt>
+          <dd>
+            <span>{{ materialRef.descripcion }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.precio">Precio</span></dt>
+          <dd>
+            <span>{{ materialRef.precio }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.stock">Stock</span></dt>
+          <dd>
+            <span>{{ materialRef.stock }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.unidadMedida">Unidad Medida</span></dt>
+          <dd>
+            <span [jhiTranslate]="'abelScApp.UnidadMedida.' + (materialRef.unidadMedida ?? 'null')">{{
+              { null: '', SACO: 'SACO', PAQUETE: 'PAQUETE', KG: 'KG', PALE: 'PALE', PIEZA: 'PIEZA', LITROS: 'LITROS' }[
+                materialRef.unidadMedida ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.material.empresa">Empresa</span></dt>
+          <dd>
+            @if (material()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', material()!.empresa?.id, 'view']">{{ materialRef.empresa?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/material', materialRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

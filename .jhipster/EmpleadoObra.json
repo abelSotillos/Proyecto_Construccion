@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221327"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "horas",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "EmpleadoObra",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "obra",
+      "relationshipName": "obra",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "empleado",
+      "relationshipName": "empleado",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

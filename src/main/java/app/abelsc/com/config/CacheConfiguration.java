@@ -41,6 +41,16 @@ public class CacheConfiguration {
             createCache(cm, app.abelsc.com.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, app.abelsc.com.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, app.abelsc.com.domain.Authority.class.getName());
+            createCache(cm, app.abelsc.com.domain.Cliente.class.getName());
+            createCache(cm, app.abelsc.com.domain.Empleado.class.getName());
+            createCache(cm, app.abelsc.com.domain.EmpleadoObra.class.getName());
+            createCache(cm, app.abelsc.com.domain.Empresa.class.getName());
+            createCache(cm, app.abelsc.com.domain.Maquinaria.class.getName());
+            createCache(cm, app.abelsc.com.domain.MaquinariaObra.class.getName());
+            createCache(cm, app.abelsc.com.domain.Material.class.getName());
+            createCache(cm, app.abelsc.com.domain.MaterialObra.class.getName());
+            createCache(cm, app.abelsc.com.domain.Obra.class.getName());
+            createCache(cm, app.abelsc.com.domain.PerfilUsuario.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,32 @@
+{
+  "abelScApp": {
+    "obra": {
+      "home": {
+        "title": "Obras",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Obra",
+        "createOrEditLabel": "Crear o editar Obra",
+        "notFound": "Ningún Obras encontrado"
+      },
+      "created": "Un nuevo Obra ha sido creado con el identificador {{ param }}",
+      "updated": "Un Obra ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Obra ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Obra"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "direccion": "Direccion",
+      "fechaInicio": "Fecha Inicio",
+      "fechaFin": "Fecha Fin",
+      "coste": "Coste",
+      "estado": "Estado",
+      "costePagado": "Coste Pagado",
+      "empresa": "Empresa",
+      "cliente": "Cliente"
+    }
+  }
+}

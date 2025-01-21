@@ -1,0 +1,27 @@
+{
+  "abelScApp": {
+    "maquinaria": {
+      "home": {
+        "title": "Maquinarias",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Maquinaria",
+        "createOrEditLabel": "Crear o editar Maquinaria",
+        "notFound": "Ningún Maquinarias encontrado"
+      },
+      "created": "Un nuevo Maquinaria ha sido creado con el identificador {{ param }}",
+      "updated": "Un Maquinaria ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Maquinaria ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Maquinaria {{ id }}?"
+      },
+      "detail": {
+        "title": "Maquinaria"
+      },
+      "id": "ID",
+      "modelo": "Modelo",
+      "estado": "Estado",
+      "precio": "Precio",
+      "empresa": "Empresa"
+    }
+  }
+}

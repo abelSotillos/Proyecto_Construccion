@@ -1,0 +1,76 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (obra(); as obraRef) {
+      <div>
+        <h2 data-cy="obraDetailsHeading"><span jhiTranslate="abelScApp.obra.detail.title">Obra</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ obraRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ obraRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ obraRef.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.fechaInicio">Fecha Inicio</span></dt>
+          <dd>
+            <span>{{ obraRef.fechaInicio | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.fechaFin">Fecha Fin</span></dt>
+          <dd>
+            <span>{{ obraRef.fechaFin | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.coste">Coste</span></dt>
+          <dd>
+            <span>{{ obraRef.coste }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.estado">Estado</span></dt>
+          <dd>
+            <span [jhiTranslate]="'abelScApp.EstadoObra.' + (obraRef.estado ?? 'null')">{{
+              { null: '', TERMINADO: 'TERMINADO', INICIADO: 'INICIADO', PARADO: 'PARADO' }[obraRef.estado ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.costePagado">Coste Pagado</span></dt>
+          <dd>
+            <span>{{ obraRef.costePagado }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.empresa">Empresa</span></dt>
+          <dd>
+            @if (obra()!.empresa) {
+              <div>
+                <a [routerLink]="['/empresa', obra()!.empresa?.id, 'view']">{{ obraRef.empresa?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="abelScApp.obra.cliente">Cliente</span></dt>
+          <dd>
+            @if (obra()!.cliente) {
+              <div>
+                <a [routerLink]="['/cliente', obra()!.cliente?.id, 'view']">{{ obraRef.cliente?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/obra', obraRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

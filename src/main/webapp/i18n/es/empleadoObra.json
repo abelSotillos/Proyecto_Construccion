@@ -1,0 +1,26 @@
+{
+  "abelScApp": {
+    "empleadoObra": {
+      "home": {
+        "title": "Empleado Obras",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Empleado Obra",
+        "createOrEditLabel": "Crear o editar Empleado Obra",
+        "notFound": "Ningún Empleado Obras encontrado"
+      },
+      "created": "Un nuevo Empleado Obra ha sido creado con el identificador {{ param }}",
+      "updated": "Un Empleado Obra ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Empleado Obra ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Empleado Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Empleado Obra"
+      },
+      "id": "ID",
+      "horas": "Horas",
+      "obra": "Obra",
+      "empleado": "Empleado"
+    }
+  }
+}

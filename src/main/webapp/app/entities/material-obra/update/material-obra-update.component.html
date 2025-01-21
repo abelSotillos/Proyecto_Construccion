@@ -1,0 +1,72 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-material-obra-heading"
+        data-cy="MaterialObraCreateUpdateHeading"
+        jhiTranslate="abelScApp.materialObra.home.createOrEditLabel"
+      >
+        Crear o editar Material Obra
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="abelScApp.materialObra.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cantidad" jhiTranslate="abelScApp.materialObra.cantidad">Cantidad</label>
+          <input type="number" class="form-control" name="cantidad" id="field_cantidad" data-cy="cantidad" formControlName="cantidad" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_obra" jhiTranslate="abelScApp.materialObra.obra">Obra</label>
+          <select class="form-control" id="field_obra" data-cy="obra" name="obra" formControlName="obra" [compareWith]="compareObra">
+            <option [ngValue]="null"></option>
+            @for (obraOption of obrasSharedCollection; track $index) {
+              <option [ngValue]="obraOption">{{ obraOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_material" jhiTranslate="abelScApp.materialObra.material">Material</label>
+          <select
+            class="form-control"
+            id="field_material"
+            data-cy="material"
+            name="material"
+            formControlName="material"
+            [compareWith]="compareMaterial"
+          >
+            <option [ngValue]="null"></option>
+            @for (materialOption of materialsSharedCollection; track $index) {
+              <option [ngValue]="materialOption">{{ materialOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

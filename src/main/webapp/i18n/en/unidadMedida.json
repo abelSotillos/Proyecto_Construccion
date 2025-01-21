@@ -1,0 +1,13 @@
+{
+  "abelScApp": {
+    "UnidadMedida": {
+      "null": "",
+      "SACO": "SACO",
+      "PAQUETE": "PAQUETE",
+      "KG": "KG",
+      "PALE": "PALE",
+      "PIEZA": "PIEZA",
+      "LITROS": "LITROS"
+    }
+  }
+}

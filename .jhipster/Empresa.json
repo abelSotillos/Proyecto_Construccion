@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221328"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "calle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "provincia",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "poblacion",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Empresa",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

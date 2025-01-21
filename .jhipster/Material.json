@@ -1,0 +1,42 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221331"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "descripcion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "precio",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "stock",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "unidadMedida",
+      "fieldType": "UnidadMedida",
+      "fieldValues": "SACO,PAQUETE,KG,PALE,PIEZA,LITROS"
+    }
+  ],
+  "name": "Material",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

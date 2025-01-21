@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221332"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "cantidad",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "MaterialObra",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "obra",
+      "relationshipName": "obra",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "material",
+      "relationshipName": "material",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

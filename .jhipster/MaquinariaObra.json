@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221330"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "horas",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "MaquinariaObra",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "obra",
+      "relationshipName": "obra",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "maquinaria",
+      "relationshipName": "maquinaria",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

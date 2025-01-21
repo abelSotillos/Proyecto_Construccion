@@ -1,0 +1,26 @@
+{
+  "abelScApp": {
+    "maquinariaObra": {
+      "home": {
+        "title": "Maquinaria Obras",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Maquinaria Obra",
+        "createOrEditLabel": "Crear o editar Maquinaria Obra",
+        "notFound": "Ningún Maquinaria Obras encontrado"
+      },
+      "created": "Un nuevo Maquinaria Obra ha sido creado con el identificador {{ param }}",
+      "updated": "Un Maquinaria Obra ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Maquinaria Obra ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Maquinaria Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Maquinaria Obra"
+      },
+      "id": "ID",
+      "horas": "Horas",
+      "obra": "Obra",
+      "maquinaria": "Maquinaria"
+    }
+  }
+}

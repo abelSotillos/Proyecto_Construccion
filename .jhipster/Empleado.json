@@ -1,0 +1,37 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221326"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dni",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "salario",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "fechaContratacion",
+      "fieldType": "Instant"
+    }
+  ],
+  "name": "Empleado",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

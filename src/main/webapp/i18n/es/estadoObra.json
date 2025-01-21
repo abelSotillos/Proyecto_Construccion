@@ -1,0 +1,10 @@
+{
+  "abelScApp": {
+    "EstadoObra": {
+      "null": "",
+      "TERMINADO": "TERMINADO",
+      "INICIADO": "INICIADO",
+      "PARADO": "PARADO"
+    }
+  }
+}

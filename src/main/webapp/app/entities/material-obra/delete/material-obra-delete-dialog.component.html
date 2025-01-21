@@ -1,0 +1,30 @@
+@if (materialObra) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(materialObra.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="materialObraDeleteDialogHeading" jhiTranslate="entity.delete.title">
+        Confirmar operación de borrado
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-materialObra-heading"
+        jhiTranslate="abelScApp.materialObra.delete.question"
+        [translateValues]="{ id: materialObra.id }"
+      >
+        ¿Seguro que quiere eliminar Material Obra {{ materialObra.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-materialObra" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Eliminar</span>
+      </button>
+    </div>
+  </form>
+}

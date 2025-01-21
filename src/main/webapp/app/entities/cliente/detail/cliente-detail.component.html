@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (cliente(); as clienteRef) {
+      <div>
+        <h2 data-cy="clienteDetailsHeading"><span jhiTranslate="abelScApp.cliente.detail.title">Cliente</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ clienteRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ clienteRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.apellidos">Apellidos</span></dt>
+          <dd>
+            <span>{{ clienteRef.apellidos }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.nif">Nif</span></dt>
+          <dd>
+            <span>{{ clienteRef.nif }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.direccion">Direccion</span></dt>
+          <dd>
+            <span>{{ clienteRef.direccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.telefono">Telefono</span></dt>
+          <dd>
+            <span>{{ clienteRef.telefono }}</span>
+          </dd>
+          <dt><span jhiTranslate="abelScApp.cliente.email">Email</span></dt>
+          <dd>
+            <span>{{ clienteRef.email }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/cliente', clienteRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

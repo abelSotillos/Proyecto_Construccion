@@ -1,0 +1,137 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-obra-heading" data-cy="ObraCreateUpdateHeading" jhiTranslate="abelScApp.obra.home.createOrEditLabel">
+        Crear o editar Obra
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="abelScApp.obra.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="abelScApp.obra.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_direccion" jhiTranslate="abelScApp.obra.direccion">Direccion</label>
+          <input type="text" class="form-control" name="direccion" id="field_direccion" data-cy="direccion" formControlName="direccion" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaInicio" jhiTranslate="abelScApp.obra.fechaInicio">Fecha Inicio</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaInicio"
+              data-cy="fechaInicio"
+              type="datetime-local"
+              class="form-control"
+              name="fechaInicio"
+              formControlName="fechaInicio"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaFin" jhiTranslate="abelScApp.obra.fechaFin">Fecha Fin</label>
+          <div class="d-flex">
+            <input
+              id="field_fechaFin"
+              data-cy="fechaFin"
+              type="datetime-local"
+              class="form-control"
+              name="fechaFin"
+              formControlName="fechaFin"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_coste" jhiTranslate="abelScApp.obra.coste">Coste</label>
+          <input type="number" class="form-control" name="coste" id="field_coste" data-cy="coste" formControlName="coste" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estado" jhiTranslate="abelScApp.obra.estado">Estado</label>
+          <select class="form-control" name="estado" formControlName="estado" id="field_estado" data-cy="estado">
+            <option [ngValue]="null">{{ 'abelScApp.EstadoObra.null' | translate }}</option>
+            @for (estadoObra of estadoObraValues; track $index) {
+              <option [value]="estadoObra">{{ 'abelScApp.EstadoObra.' + estadoObra | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_costePagado" jhiTranslate="abelScApp.obra.costePagado">Coste Pagado</label>
+          <input
+            type="number"
+            class="form-control"
+            name="costePagado"
+            id="field_costePagado"
+            data-cy="costePagado"
+            formControlName="costePagado"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_empresa" jhiTranslate="abelScApp.obra.empresa">Empresa</label>
+          <select
+            class="form-control"
+            id="field_empresa"
+            data-cy="empresa"
+            name="empresa"
+            formControlName="empresa"
+            [compareWith]="compareEmpresa"
+          >
+            <option [ngValue]="null"></option>
+            @for (empresaOption of empresasSharedCollection; track $index) {
+              <option [ngValue]="empresaOption">{{ empresaOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_cliente" jhiTranslate="abelScApp.obra.cliente">Cliente</label>
+          <select
+            class="form-control"
+            id="field_cliente"
+            data-cy="cliente"
+            name="cliente"
+            formControlName="cliente"
+            [compareWith]="compareCliente"
+          >
+            <option [ngValue]="null"></option>
+            @for (clienteOption of clientesSharedCollection; track $index) {
+              <option [ngValue]="clienteOption">{{ clienteOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

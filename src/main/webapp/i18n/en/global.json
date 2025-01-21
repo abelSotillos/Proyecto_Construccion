@@ -8,7 +8,16 @@
       "entities": {
         "main": "Entities",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)",
-        "adminAuthority": "Authority"
+        "cliente": "Cliente",
+        "empleado": "Empleado",
+        "empleadoObra": "Empleado Obra",
+        "empresa": "Empresa",
+        "maquinaria": "Maquinaria",
+        "maquinariaObra": "Maquinaria Obra",
+        "material": "Material",
+        "materialObra": "Material Obra",
+        "obra": "Obra",
+        "perfilUsuario": "Perfil Usuario"
       },
       "account": {
         "main": "Account",

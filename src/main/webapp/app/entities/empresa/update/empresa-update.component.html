@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-empresa-heading" data-cy="EmpresaCreateUpdateHeading" jhiTranslate="abelScApp.empresa.home.createOrEditLabel">
+        Crear o editar Empresa
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="abelScApp.empresa.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="abelScApp.empresa.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_nif" jhiTranslate="abelScApp.empresa.nif">Nif</label>
+          <input type="text" class="form-control" name="nif" id="field_nif" data-cy="nif" formControlName="nif" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_calle" jhiTranslate="abelScApp.empresa.calle">Calle</label>
+          <input type="text" class="form-control" name="calle" id="field_calle" data-cy="calle" formControlName="calle" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telefono" jhiTranslate="abelScApp.empresa.telefono">Telefono</label>
+          <input type="text" class="form-control" name="telefono" id="field_telefono" data-cy="telefono" formControlName="telefono" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_provincia" jhiTranslate="abelScApp.empresa.provincia">Provincia</label>
+          <input type="text" class="form-control" name="provincia" id="field_provincia" data-cy="provincia" formControlName="provincia" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_poblacion" jhiTranslate="abelScApp.empresa.poblacion">Poblacion</label>
+          <input type="text" class="form-control" name="poblacion" id="field_poblacion" data-cy="poblacion" formControlName="poblacion" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

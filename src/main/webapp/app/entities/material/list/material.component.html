@@ -1,0 +1,154 @@
+<div>
+  <h2 id="page-heading" data-cy="MaterialHeading">
+    <span jhiTranslate="abelScApp.material.home.title">Materials</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="abelScApp.material.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-material"
+        [routerLink]="['/material/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="abelScApp.material.home.createLabel">Crear nuevo Material</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (materials().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="abelScApp.material.home.notFound">Ningún Materials encontrado</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcion">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.descripcion">Descripcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="precio">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.precio">Precio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="stock">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.stock">Stock</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="unidadMedida">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.unidadMedida">Unidad Medida</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.material.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (material of materials(); track trackId(material)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/material', material.id, 'view']">{{ material.id }}</a>
+              </td>
+              <td>{{ material.nombre }}</td>
+              <td>{{ material.descripcion }}</td>
+              <td>{{ material.precio }}</td>
+              <td>{{ material.stock }}</td>
+              <td [jhiTranslate]="'abelScApp.UnidadMedida.' + (material.unidadMedida ?? 'null')">
+                {{
+                  { null: '', SACO: 'SACO', PAQUETE: 'PAQUETE', KG: 'KG', PALE: 'PALE', PIEZA: 'PIEZA', LITROS: 'LITROS' }[
+                    material.unidadMedida ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @if (material.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', material.empresa.id, 'view']">{{ material.empresa.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/material', material.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/material', material.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(material)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (materials().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

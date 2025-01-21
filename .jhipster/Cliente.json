@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221325"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "apellidos",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telefono",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Cliente",
+  "pagination": "pagination",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

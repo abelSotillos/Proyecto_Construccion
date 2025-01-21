@@ -1,0 +1,179 @@
+<div>
+  <h2 id="page-heading" data-cy="ObraHeading">
+    <span jhiTranslate="abelScApp.obra.home.title">Obras</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="abelScApp.obra.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-obra"
+        [routerLink]="['/obra/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="abelScApp.obra.home.createLabel">Crear nuevo Obra</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (obras().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="abelScApp.obra.home.notFound">Ningún Obras encontrado</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="direccion">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.direccion">Direccion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaInicio">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.fechaInicio">Fecha Inicio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaFin">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.fechaFin">Fecha Fin</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="coste">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.coste">Coste</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.estado">Estado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="costePagado">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.costePagado">Coste Pagado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="empresa.id">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.empresa">Empresa</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="cliente.id">
+              <div class="d-flex">
+                <span jhiTranslate="abelScApp.obra.cliente">Cliente</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (obra of obras(); track trackId(obra)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/obra', obra.id, 'view']">{{ obra.id }}</a>
+              </td>
+              <td>{{ obra.nombre }}</td>
+              <td>{{ obra.direccion }}</td>
+              <td>{{ obra.fechaInicio | formatMediumDatetime }}</td>
+              <td>{{ obra.fechaFin | formatMediumDatetime }}</td>
+              <td>{{ obra.coste }}</td>
+              <td [jhiTranslate]="'abelScApp.EstadoObra.' + (obra.estado ?? 'null')">
+                {{ { null: '', TERMINADO: 'TERMINADO', INICIADO: 'INICIADO', PARADO: 'PARADO' }[obra.estado ?? 'null'] }}
+              </td>
+              <td>{{ obra.costePagado }}</td>
+              <td>
+                @if (obra.empresa) {
+                  <div>
+                    <a [routerLink]="['/empresa', obra.empresa.id, 'view']">{{ obra.empresa.id }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (obra.cliente) {
+                  <div>
+                    <a [routerLink]="['/cliente', obra.cliente.id, 'view']">{{ obra.cliente.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/obra', obra.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/obra', obra.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(obra)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (obras().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

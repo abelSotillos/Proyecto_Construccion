@@ -1,0 +1,56 @@
+{
+  "annotations": {
+    "changelogDate": "20250121221333"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "nombre",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "direccion",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fechaInicio",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "fechaFin",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "coste",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "estado",
+      "fieldType": "EstadoObra",
+      "fieldValues": "TERMINADO,INICIADO,PARADO"
+    },
+    {
+      "fieldName": "costePagado",
+      "fieldType": "Long"
+    }
+  ],
+  "name": "Obra",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "empresa",
+      "relationshipName": "empresa",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "cliente",
+      "relationshipName": "cliente",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

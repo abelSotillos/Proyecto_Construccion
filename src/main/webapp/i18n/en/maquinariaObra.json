@@ -1,0 +1,26 @@
+{
+  "abelScApp": {
+    "maquinariaObra": {
+      "home": {
+        "title": "Maquinaria Obras",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Maquinaria Obra",
+        "createOrEditLabel": "Create or edit a Maquinaria Obra",
+        "notFound": "No Maquinaria Obras found"
+      },
+      "created": "A new Maquinaria Obra is created with identifier {{ param }}",
+      "updated": "A Maquinaria Obra is updated with identifier {{ param }}",
+      "deleted": "A Maquinaria Obra is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Maquinaria Obra {{ id }}?"
+      },
+      "detail": {
+        "title": "Maquinaria Obra"
+      },
+      "id": "ID",
+      "horas": "Horas",
+      "obra": "Obra",
+      "maquinaria": "Maquinaria"
+    }
+  }
+}
