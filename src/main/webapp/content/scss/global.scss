@@ -74,7 +74,12 @@ Generic styles
 }
 
 .footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+  background: #3b3b3b;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  margin-top: 20px;
 }
 
 .hand,

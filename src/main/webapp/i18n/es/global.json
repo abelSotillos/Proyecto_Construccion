@@ -152,5 +152,5 @@
       "not.image": "Se esperaba que el fichero fuera una imagen pero se encontro \"{{ fileType }}\""
     }
   },
-  "footer": "Pie de página"
+  "footer": "Creado por Abel Sotillos Cuenca"
 }
