@@ -1,5 +1,6 @@
 package app.abelsc.com.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -20,6 +21,12 @@ public class PerfilUsuario implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Empresa empresa;
+
+    @OneToOne
+    @JoinColumn(name = "id")
+    @MapsId
+    @JsonIgnoreProperties(value = { "perfilUsuario" }, allowSetters = true)
+    private User usuario;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -46,6 +53,19 @@ public class PerfilUsuario implements Serializable {
 
     public PerfilUsuario empresa(Empresa empresa) {
         this.setEmpresa(empresa);
+        return this;
+    }
+
+    public User getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(User usuario) {
+        this.usuario = usuario;
+    }
+
+    public PerfilUsuario usuario(User user) {
+        this.setUsuario(user);
         return this;
     }
 

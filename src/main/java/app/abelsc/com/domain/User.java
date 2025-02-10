@@ -88,6 +88,10 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
     @BatchSize(size = 20)
     private Set<Authority> authorities = new HashSet<>();
 
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private PerfilUsuario perfilUsuario;
+
     public Long getId() {
         return id;
     }
@@ -191,6 +195,19 @@ public class User extends AbstractAuditingEntity<Long> implements Serializable {
 
     public void setAuthorities(Set<Authority> authorities) {
         this.authorities = authorities;
+    }
+
+    public PerfilUsuario getPerfilUsuario() {
+        return perfilUsuario;
+    }
+
+    public void setPerfilUsuario(PerfilUsuario perfilUsuario) {
+        this.perfilUsuario = perfilUsuario;
+    }
+
+    public User perfilUsuario(PerfilUsuario perfilUsuario) {
+        this.setPerfilUsuario(perfilUsuario);
+        return this;
     }
 
     @Override

@@ -2,6 +2,7 @@ package app.abelsc.com.service;
 
 import app.abelsc.com.config.Constants;
 import app.abelsc.com.domain.Authority;
+import app.abelsc.com.domain.PerfilUsuario;
 import app.abelsc.com.domain.User;
 import app.abelsc.com.repository.AuthorityRepository;
 import app.abelsc.com.repository.UserRepository;
@@ -174,6 +175,9 @@ public class UserService {
                 .collect(Collectors.toSet());
             user.setAuthorities(authorities);
         }
+        PerfilUsuario perfilUsuario = new PerfilUsuario();
+        perfilUsuario.setUsuario(user);
+        user.setPerfilUsuario(perfilUsuario);
         userRepository.save(user);
         this.clearUserCaches(user);
         LOG.debug("Created Information for User: {}", user);

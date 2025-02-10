@@ -19,6 +19,12 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
+        <loadData
+                  file="config/liquibase/data/perfil_usuario.csv"
+                  separator=";"
+                  tableName="perfil_usuario"
+                  usePreparedStatements="true">
+        </loadData>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
