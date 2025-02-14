@@ -6,12 +6,14 @@ import { takeUntil } from 'rxjs/operators';
 import SharedModule from 'app/shared/shared.module';
 import { AccountService } from 'app/core/auth/account.service';
 import { Account } from 'app/core/auth/account.model';
+import { EmpresaComponent } from '../entities/empresa/list/empresa.component';
+import { ObraComponent } from '../entities/obra/list/obra.component';
 
 @Component({
   selector: 'jhi-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  imports: [SharedModule, RouterModule],
+  imports: [SharedModule, RouterModule, EmpresaComponent, ObraComponent],
 })
 export default class HomeComponent implements OnInit, OnDestroy {
   account = signal<Account | null>(null);
@@ -25,7 +27,13 @@ export default class HomeComponent implements OnInit, OnDestroy {
     this.accountService
       .getAuthenticationState()
       .pipe(takeUntil(this.destroy$))
-      .subscribe(account => this.account.set(account));
+      .subscribe(account => {
+        if (account === null) {
+          this.router.navigate(['/login']);
+        } else {
+          this.account.set(account);
+        }
+      });
   }
 
   login(): void {

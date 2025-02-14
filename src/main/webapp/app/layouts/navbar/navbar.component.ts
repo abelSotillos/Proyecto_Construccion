@@ -34,6 +34,7 @@ export default class NavbarComponent implements OnInit {
   private readonly stateStorageService = inject(StateStorageService);
   private readonly profileService = inject(ProfileService);
   private readonly router = inject(Router);
+  private readonly accountService = inject(AccountService);
 
   constructor() {
     const { VERSION } = environment;
@@ -47,6 +48,11 @@ export default class NavbarComponent implements OnInit {
     this.profileService.getProfileInfo().subscribe(profileInfo => {
       this.inProduction = profileInfo.inProduction;
       this.openAPIEnabled = profileInfo.openAPIEnabled;
+    });
+    this.accountService.identity().subscribe(res => {
+      if (res === null) {
+        this.router.navigate(['/login']);
+      }
     });
   }
 
@@ -66,7 +72,7 @@ export default class NavbarComponent implements OnInit {
   logout(): void {
     this.collapseNavbar();
     this.loginService.logout();
-    this.router.navigate(['']);
+    this.router.navigate(['/login']);
   }
 
   toggleNavbar(): void {
