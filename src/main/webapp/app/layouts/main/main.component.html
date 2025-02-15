@@ -1,11 +1,11 @@
 <jhi-page-ribbon></jhi-page-ribbon>
 <div class="main-container">
   @if (!isLoggin) {
-    <div>
+    <div class="navbar">
       <router-outlet name="navbar"></router-outlet>
     </div>
   }
-  <div>
+  <div class="main-content">
     <router-outlet></router-outlet>
 
     <jhi-footer></jhi-footer>

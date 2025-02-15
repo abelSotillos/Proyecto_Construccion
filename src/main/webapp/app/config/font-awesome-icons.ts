@@ -1,4 +1,6 @@
 import {
+  faAddressBook,
+  faAddressCard,
   faArrowLeft,
   faAsterisk,
   faBan,
@@ -14,6 +16,7 @@ import {
   faFlag,
   faHeart,
   faHome,
+  faIndustry,
   faList,
   faLock,
   faPencilAlt,
@@ -31,7 +34,10 @@ import {
   faTasks,
   faThList,
   faTimes,
+  faTractor,
   faTrashAlt,
+  faTrowel,
+  faTrowelBricks,
   faUser,
   faUserPlus,
   faUsers,
@@ -79,5 +85,11 @@ export const fontAwesomeIcons = [
   faUsers,
   faUsersCog,
   faWrench,
+  faTrowelBricks,
+  faAddressCard,
+  faAddressBook,
+  faTractor,
+  faTrowel,
+  faIndustry,
   // jhipster-needle-add-icon-import
 ];

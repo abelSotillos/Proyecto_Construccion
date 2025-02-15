@@ -1,4 +1,4 @@
-<nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
+<!-- <nav data-cy="navbar" class="navbar navbar-dark navbar-expand-md bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
       <span class="logo-img"></span>
@@ -27,7 +27,6 @@
             </span>
           </a>
         </li>
-        <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
         @if (account() !== null) {
           <li
             ngbDropdown
@@ -163,7 +162,6 @@
                   <span jhiTranslate="global.menu.entities.perfilUsuario">Perfil Usuario</span>
                 </a>
               </li>
-              <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
             </ul>
           </li>
         }
@@ -194,7 +192,6 @@
                 <span jhiTranslate="global.menu.entities.adminAuthority">Authority</span>
               </a>
             </li>
-            <!-- jhipster-needle-add-element-to-admin-menu - JHipster will add entities to the admin menu here -->
             <li>
               <a class="dropdown-item" routerLink="/admin/user-management" routerLinkActive="active" (click)="collapseNavbar()">
                 <fa-icon icon="users" [fixedWidth]="true"></fa-icon>
@@ -335,4 +332,71 @@
       </ul>
     </div>
   </div>
+</nav> -->
+<nav class="navbar-nav">
+  <ul class="nav flex-column">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="nav-link active" routerLink="/account/settings" (click)="collapseNavbar()">
+        <fa-icon icon="user"></fa-icon>
+        <span jhiTranslate="global.menu.account.settings">Ajustes</span>
+      </a>
+    </li>
+  </ul>
+  <div>
+    <ul class="nav flex-column">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/obra" (click)="collapseNavbar()">
+          <fa-icon icon="trowel-bricks"></fa-icon>
+          <span jhiTranslate="global.menu.entities.obra">Obra</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/empleado" (click)="collapseNavbar()">
+          <fa-icon icon="address-card"></fa-icon>
+          <span jhiTranslate="global.menu.entities.empleado">Empleado</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/material" (click)="collapseNavbar()">
+          <fa-icon icon="trowel"></fa-icon>
+          <span jhiTranslate="global.menu.entities.material">Material</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/maquinaria" (click)="collapseNavbar()">
+          <fa-icon icon="tractor"></fa-icon>
+          <span jhiTranslate="global.menu.entities.maquinaria">Maquinaria</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/cliente" (click)="collapseNavbar()">
+          <fa-icon icon="address-book"></fa-icon>
+          <span jhiTranslate="global.menu.entities.cliente">Cliente</span>
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <ul class="nav flex-column" *jhiHasAnyAuthority="'ROLE_ADMIN'">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/empresa" (click)="collapseNavbar()">
+          <fa-icon icon="industry"></fa-icon>
+          <span jhiTranslate="global.menu.entities.empresa">Empresa</span>
+        </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a class="nav-link active" routerLink="/admin/user-management" (click)="collapseNavbar()">
+          <fa-icon icon="users"></fa-icon>
+          <span jhiTranslate="global.menu.admin.userManagement">Gestión de usuarios</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <ul class="nav flex-column">
+    <li>
+      <a class="nav-link active" (click)="logout()" id="logout" data-cy="logout">
+        <fa-icon icon="sign-out-alt" [fixedWidth]="true"></fa-icon>
+        <span jhiTranslate="global.menu.account.logout">Cerrar la sesión</span>
+      </a>
+    </li>
+  </ul>
 </nav>

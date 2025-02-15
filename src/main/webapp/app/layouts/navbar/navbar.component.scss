@@ -46,3 +46,8 @@ Logo styles
   background: url('/content/images/logo-jhipster.png') no-repeat center center;
   background-size: contain;
 }
+.navbar-nav {
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
