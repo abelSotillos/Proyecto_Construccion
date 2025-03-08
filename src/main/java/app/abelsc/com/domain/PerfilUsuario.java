@@ -22,11 +22,9 @@ public class PerfilUsuario implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Empresa empresa;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    @MapsId
-    @JsonIgnoreProperties(value = { "perfilUsuario" }, allowSetters = true)
-    private User usuario;
+    @OneToOne(mappedBy = "perfilUsuario", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -57,11 +55,11 @@ public class PerfilUsuario implements Serializable {
     }
 
     public User getUsuario() {
-        return usuario;
+        return user;
     }
 
-    public void setUsuario(User usuario) {
-        this.usuario = usuario;
+    public void setUsuario(User user) {
+        this.user = user;
     }
 
     public PerfilUsuario usuario(User user) {

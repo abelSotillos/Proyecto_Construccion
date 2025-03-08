@@ -11,6 +11,8 @@ public class PerfilUsuarioDTO implements Serializable {
 
     private Long id;
 
+    private AdminUserDTO user;
+
     private EmpresaDTO empresa;
 
     public Long getId() {
@@ -27,6 +29,14 @@ public class PerfilUsuarioDTO implements Serializable {
 
     public void setEmpresa(EmpresaDTO empresa) {
         this.empresa = empresa;
+    }
+
+    public AdminUserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(AdminUserDTO user) {
+        this.user = user;
     }
 
     @Override

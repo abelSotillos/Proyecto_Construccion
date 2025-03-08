@@ -39,7 +39,7 @@ export default class MainComponent implements OnInit {
     });
     this.router.events.subscribe({
       next: () => {
-        if (this.router.url === '/login') {
+        if (this.router.url === '/login' || this.router.url === '/account/reset/request') {
           this.isLoggin = true;
         } else {
           this.isLoggin = false;

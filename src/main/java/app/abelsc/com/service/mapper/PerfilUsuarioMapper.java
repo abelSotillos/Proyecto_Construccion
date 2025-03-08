@@ -9,13 +9,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity {@link PerfilUsuario} and its DTO {@link PerfilUsuarioDTO}.
  */
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = { UserMapper.class })
 public interface PerfilUsuarioMapper extends EntityMapper<PerfilUsuarioDTO, PerfilUsuario> {
-    @Mapping(target = "empresa", source = "empresa", qualifiedByName = "empresaId")
+    @Mapping(target = "empresa", source = "empresa")
+    @Mapping(target = "user", source = "usuario")
     PerfilUsuarioDTO toDto(PerfilUsuario s);
 
     @Named("empresaId")
     @BeanMapping(ignoreByDefault = true)
     @Mapping(target = "id", source = "id")
+    @Mapping(target = "nombre", source = "nombre")
     EmpresaDTO toDtoEmpresaId(Empresa empresa);
 }
