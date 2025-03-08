@@ -23,6 +23,8 @@ public class ClienteDTO implements Serializable {
 
     private String email;
 
+    private EmpresaDTO empresa;
+
     public Long getId() {
         return id;
     }
@@ -77,6 +79,14 @@ public class ClienteDTO implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public EmpresaDTO getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(EmpresaDTO empresa) {
+        this.empresa = empresa;
     }
 
     @Override

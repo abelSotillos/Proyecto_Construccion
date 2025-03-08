@@ -36,6 +36,9 @@ public class Cliente implements Serializable {
     @Column(name = "email")
     private String email;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Empresa empresa;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -127,6 +130,14 @@ public class Cliente implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
