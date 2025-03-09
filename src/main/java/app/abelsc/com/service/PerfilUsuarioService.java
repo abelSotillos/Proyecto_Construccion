@@ -1,7 +1,10 @@
 package app.abelsc.com.service;
 
 import app.abelsc.com.domain.PerfilUsuario;
+import app.abelsc.com.domain.User;
 import app.abelsc.com.repository.PerfilUsuarioRepository;
+import app.abelsc.com.repository.UserRepository;
+import app.abelsc.com.security.SecurityUtils;
 import app.abelsc.com.service.dto.PerfilUsuarioDTO;
 import app.abelsc.com.service.mapper.PerfilUsuarioMapper;
 import java.util.Optional;
@@ -25,9 +28,16 @@ public class PerfilUsuarioService {
 
     private final PerfilUsuarioMapper perfilUsuarioMapper;
 
-    public PerfilUsuarioService(PerfilUsuarioRepository perfilUsuarioRepository, PerfilUsuarioMapper perfilUsuarioMapper) {
+    private final UserRepository userRepository;
+
+    public PerfilUsuarioService(
+        PerfilUsuarioRepository perfilUsuarioRepository,
+        PerfilUsuarioMapper perfilUsuarioMapper,
+        UserRepository userRepository
+    ) {
         this.perfilUsuarioRepository = perfilUsuarioRepository;
         this.perfilUsuarioMapper = perfilUsuarioMapper;
+        this.userRepository = userRepository;
     }
 
     /**
@@ -108,5 +118,16 @@ public class PerfilUsuarioService {
     public void delete(Long id) {
         LOG.debug("Request to delete PerfilUsuario : {}", id);
         perfilUsuarioRepository.deleteById(id);
+    }
+
+    /**
+     * Get current perfilUsuario.
+     *
+     * @return the entity.
+     */
+    public Optional<PerfilUsuarioDTO> findCurrent() {
+        String login = SecurityUtils.getCurrentUserLogin().orElseThrow();
+        User user = userRepository.findOneByLogin(login).orElseThrow();
+        return perfilUsuarioRepository.findById(user.getId()).map(perfilUsuarioMapper::toDto);
     }
 }

@@ -13,6 +13,7 @@ import { EstadoMaquinaria } from 'app/entities/enumerations/estado-maquinaria.mo
 import { MaquinariaService } from '../service/maquinaria.service';
 import { IMaquinaria } from '../maquinaria.model';
 import { MaquinariaFormGroup, MaquinariaFormService } from './maquinaria-form.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-maquinaria-update',
@@ -20,6 +21,8 @@ import { MaquinariaFormGroup, MaquinariaFormService } from './maquinaria-form.se
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class MaquinariaUpdateComponent implements OnInit {
+  currentProfile = inject(AccountService).trackCurrentProfile();
+  currentAccount = inject(AccountService).trackCurrentAccount();
   isSaving = false;
   maquinaria: IMaquinaria | null = null;
   estadoMaquinariaValues = Object.keys(EstadoMaquinaria);
@@ -45,6 +48,9 @@ export class MaquinariaUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    if (this.currentAccount()?.authorities.includes('ROLE_USER')) {
+      this.editForm.patchValue({ empresa: this.currentProfile()?.empresa });
+    }
   }
 
   previousState(): void {

@@ -30,6 +30,7 @@ export default class MainComponent implements OnInit {
 
   ngOnInit(): void {
     // try to log in automatically
+    this.accountService.identityProfile().subscribe();
     this.accountService.identity().subscribe(res => {
       if (res === null) {
         this.router.navigate(['/login']);

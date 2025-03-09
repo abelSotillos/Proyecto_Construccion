@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ICliente } from '../cliente.model';
 import { ClienteService } from '../service/cliente.service';
 import { ClienteFormGroup, ClienteFormService } from './cliente-form.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-cliente-update',
@@ -17,6 +18,8 @@ import { ClienteFormGroup, ClienteFormService } from './cliente-form.service';
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class ClienteUpdateComponent implements OnInit {
+  currentProfile = inject(AccountService).trackCurrentProfile();
+  currentAccount = inject(AccountService).trackCurrentAccount();
   isSaving = false;
   cliente: ICliente | null = null;
 
@@ -34,6 +37,9 @@ export class ClienteUpdateComponent implements OnInit {
         this.updateForm(cliente);
       }
     });
+    if (this.currentAccount()?.authorities.includes('ROLE_USER')) {
+      this.editForm.patchValue({ empresa: this.currentProfile()?.empresa });
+    }
   }
 
   previousState(): void {

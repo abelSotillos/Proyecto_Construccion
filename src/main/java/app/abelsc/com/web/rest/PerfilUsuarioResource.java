@@ -161,6 +161,18 @@ public class PerfilUsuarioResource {
     }
 
     /**
+     * {@code GET  /perfil-usuarios/current-profile} : get the Current perfilUsuario.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the perfilUsuarioDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/current-profile")
+    public ResponseEntity<PerfilUsuarioDTO> getCurrentPerfilUsuario() {
+        LOG.debug("REST request to get Current PerfilUsuario ");
+        Optional<PerfilUsuarioDTO> perfilUsuarioDTO = perfilUsuarioService.findCurrent();
+        return ResponseUtil.wrapOrNotFound(perfilUsuarioDTO);
+    }
+
+    /**
      * {@code DELETE  /perfil-usuarios/:id} : delete the "id" perfilUsuario.
      *
      * @param id the id of the perfilUsuarioDTO to delete.

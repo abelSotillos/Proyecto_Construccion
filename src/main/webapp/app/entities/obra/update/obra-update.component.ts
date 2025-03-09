@@ -15,6 +15,7 @@ import { EstadoObra } from 'app/entities/enumerations/estado-obra.model';
 import { ObraService } from '../service/obra.service';
 import { IObra } from '../obra.model';
 import { ObraFormGroup, ObraFormService } from './obra-form.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-obra-update',
@@ -22,6 +23,8 @@ import { ObraFormGroup, ObraFormService } from './obra-form.service';
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class ObraUpdateComponent implements OnInit {
+  currentProfile = inject(AccountService).trackCurrentProfile();
+  currentAccount = inject(AccountService).trackCurrentAccount();
   isSaving = false;
   obra: IObra | null = null;
   estadoObraValues = Object.keys(EstadoObra);
@@ -48,7 +51,9 @@ export class ObraUpdateComponent implements OnInit {
       if (obra) {
         this.updateForm(obra);
       }
-
+      if (this.currentAccount()?.authorities.includes('ROLE_USER')) {
+        this.editForm.patchValue({ empresa: this.currentProfile()?.empresa });
+      }
       this.loadRelationshipsOptions();
     });
   }

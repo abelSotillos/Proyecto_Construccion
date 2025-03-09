@@ -13,6 +13,7 @@ import { UnidadMedida } from 'app/entities/enumerations/unidad-medida.model';
 import { MaterialService } from '../service/material.service';
 import { IMaterial } from '../material.model';
 import { MaterialFormGroup, MaterialFormService } from './material-form.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-material-update',
@@ -20,6 +21,8 @@ import { MaterialFormGroup, MaterialFormService } from './material-form.service'
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class MaterialUpdateComponent implements OnInit {
+  currentProfile = inject(AccountService).trackCurrentProfile();
+  currentAccount = inject(AccountService).trackCurrentAccount();
   isSaving = false;
   material: IMaterial | null = null;
   unidadMedidaValues = Object.keys(UnidadMedida);
@@ -45,6 +48,9 @@ export class MaterialUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    if (this.currentAccount()?.authorities.includes('ROLE_USER')) {
+      this.editForm.patchValue({ empresa: this.currentProfile()?.empresa });
+    }
   }
 
   previousState(): void {

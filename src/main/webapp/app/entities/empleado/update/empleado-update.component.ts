@@ -12,6 +12,7 @@ import { EmpresaService } from 'app/entities/empresa/service/empresa.service';
 import { IEmpleado } from '../empleado.model';
 import { EmpleadoService } from '../service/empleado.service';
 import { EmpleadoFormGroup, EmpleadoFormService } from './empleado-form.service';
+import { AccountService } from 'app/core/auth/account.service';
 
 @Component({
   selector: 'jhi-empleado-update',
@@ -19,6 +20,8 @@ import { EmpleadoFormGroup, EmpleadoFormService } from './empleado-form.service'
   imports: [SharedModule, FormsModule, ReactiveFormsModule],
 })
 export class EmpleadoUpdateComponent implements OnInit {
+  currentProfile = inject(AccountService).trackCurrentProfile();
+  currentAccount = inject(AccountService).trackCurrentAccount();
   isSaving = false;
   empleado: IEmpleado | null = null;
 
@@ -43,6 +46,9 @@ export class EmpleadoUpdateComponent implements OnInit {
 
       this.loadRelationshipsOptions();
     });
+    if (this.currentAccount()?.authorities.includes('ROLE_USER')) {
+      this.editForm.patchValue({ empresa: this.currentProfile()?.empresa });
+    }
   }
 
   previousState(): void {

@@ -8,12 +8,16 @@ import { catchError, shareReplay, tap } from 'rxjs/operators';
 import { StateStorageService } from 'app/core/auth/state-storage.service';
 import { Account } from 'app/core/auth/account.model';
 import { ApplicationConfigService } from '../config/application-config.service';
+import { IPerfilUsuario } from 'app/entities/perfil-usuario/perfil-usuario.model';
 
 @Injectable({ providedIn: 'root' })
 export class AccountService {
   private readonly userIdentity = signal<Account | null>(null);
+  private readonly perfilIdentity = signal<IPerfilUsuario | null>(null);
   private readonly authenticationState = new ReplaySubject<Account | null>(1);
+  private readonly authenticationProfileState = new ReplaySubject<IPerfilUsuario | null>(1);
   private accountCache$?: Observable<Account> | null;
+  private profileCache$?: Observable<IPerfilUsuario> | null;
 
   private readonly translateService = inject(TranslateService);
   private readonly http = inject(HttpClient);
@@ -32,9 +36,20 @@ export class AccountService {
       this.accountCache$ = null;
     }
   }
+  authenticateProfile(identity: IPerfilUsuario | null): void {
+    this.perfilIdentity.set(identity);
+    this.authenticationProfileState.next(this.perfilIdentity());
+    if (!identity) {
+      this.profileCache$ = null;
+    }
+  }
 
   trackCurrentAccount(): Signal<Account | null> {
     return this.userIdentity.asReadonly();
+  }
+
+  trackCurrentProfile(): Signal<IPerfilUsuario | null> {
+    return this.perfilIdentity.asReadonly();
   }
 
   hasAnyAuthority(authorities: string[] | string): boolean {
@@ -69,6 +84,18 @@ export class AccountService {
     return this.accountCache$.pipe(catchError(() => of(null)));
   }
 
+  identityProfile(force?: boolean): Observable<IPerfilUsuario | null> {
+    if (!this.profileCache$ || force) {
+      this.profileCache$ = this.findCurrentProfileUser().pipe(
+        tap((profile: IPerfilUsuario) => {
+          this.authenticateProfile(profile);
+        }),
+        shareReplay(),
+      );
+    }
+    return this.profileCache$.pipe(catchError(() => of(null)));
+  }
+
   isAuthenticated(): boolean {
     return this.userIdentity() !== null;
   }
@@ -79,6 +106,10 @@ export class AccountService {
 
   private fetch(): Observable<Account> {
     return this.http.get<Account>(this.applicationConfigService.getEndpointFor('api/account'));
+  }
+
+  private findCurrentProfileUser(): Observable<IPerfilUsuario> {
+    return this.http.get<IPerfilUsuario>(this.applicationConfigService.getEndpointFor('api/perfil-usuarios/current-profile'));
   }
 
   private navigateToStoredUrl(): void {
